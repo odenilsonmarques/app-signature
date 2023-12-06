@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+    # image custom project
+    app_signature:
+        build:
+            args:
+                user: odenilson
+                uid: 1000
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - private-net-signature
+
+    # nginx
+    nginx:
+        image: nginx:alpine
+        restart: always
+        ports: 
+            - "8787:80"
+        volumes: 
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks: 
+            - private-net-signature
+
+    # db mysql
+    mysql:
+        image: mysql:5.7.22
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        volumes:
+            - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports:
+            - "3388:3306"
+        networks:
+            - private-net-signature
+
+    # redis
+    redis:
+        image: redis:latest
+        networks:
+            - private-net-signature
+
+networks:
+    private-net-signature:
+        driver: bridge

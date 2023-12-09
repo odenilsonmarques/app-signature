@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Signature\SignatureController;
+use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::post('signatures/store',[SignatureController::class,'store'])->name('signatures.store');
+
+Route::get('signatures/premium',[SignatureController::class,'premium'])->name('signatures.premium')->middleware('signature');
+
+Route::get('signatures/checkout',[SignatureController::class,'checkout'])->name('signatures.checkout');
+
+Route::get('signatures/invoice',[SignatureController::class, 'invoice'])->name('signatures.invoice');//rota para exibir as faturas
+
+Route::get('signatures/invoice/{id}',[SignatureController::class,'downloadInvoice'])->name('signatures.invoice.download');
+
+
+Route::get('/',[SiteController::class, 'home'])->name('site.home');
+
+
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

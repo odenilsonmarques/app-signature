@@ -42,6 +42,10 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
+                            <x-dropdown-link :href="route('signatures.invoice')">
+                                {{ __('Minha Assinatura') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

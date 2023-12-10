@@ -8,21 +8,22 @@ body{
 
 .navbar a.navbar-brand {
     color: #111;
-    font-weight: bold;   
-    font-size: 20px;
-   
-    /* border: 1px solid red; */
+    /* font-weight: bold;    */
 }
 
-.navbar-expand-sm .navbar-nav .nav-link{
+ .navbar-expand-sm .navbar-nav .nav-link{
     color: #111;
-    /* border: 1px solid red; */
-    margin-left: 35px;
+    /* padding-left: 10px; */
 }
 
 .navbar-expand-sm .navbar-nav .nav-link:hover{
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: #111;
+}
+
+.navbar-expand-sm .navbar-nav .nav-link {
+    padding-right: 0.0rem; 
+    padding-left: 0.0rem;
 }
 
 .contacts{
@@ -30,7 +31,7 @@ body{
     border-radius: 25px;
 }
 
-
+/* 
 button a{
     text-decoration: none;
     color: #fff;
@@ -63,7 +64,7 @@ table td a:hover{
 .table-notas{
     margin-top: 100px;
     background-color: #fff;
-}
+} */
 
 
 

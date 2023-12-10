@@ -10,27 +10,27 @@
 </head>
 <body>
     <header class="mb">
-        <nav class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color:#">
+        <nav class="navbar navbar-expand-sm navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="/">
-                    Landing Page
+                <a class="navbar-brand" href="#">
+                    Assine
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <nav class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link" href="#">O Que é</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link" href="#">Funcionalidade</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link" href="#">Preço</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link contacts" href="#">Converse com a gente</a>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="#">Converse com a gente</a>
                         </li>
                     </ul>
                 </nav>

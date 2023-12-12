@@ -9,15 +9,15 @@
 
     <div class="container mx-auto mt-6">
         {{-- condição para cancelar assinatura --}}
-        @if(Auth::user()->subscription('default'))
+        @if (Auth::user()->subscription('default'))
             {{-- caso o cilnete queira voltar a reativar fazemos essa condição aqui, pois ele cancelou mais ainda esté dentro do periodo que ele pode reativar --}}
-            @if(Auth::user()->subscription('default')->onGracePeriod())
-                <a href="{{route('signatures.resume')}}">Reativar Assinatura</a>
+            @if (Auth::user()->subscription('default')->onGracePeriod())
+                <a href="{{ route('signatures.resume') }}" class="btn btn-outline-success">Reativar Assinatura</a>
             @else
-                <a href="{{route('signatures.cancel')}}">Cancelar Assinatura</a>
+                <a href="{{ route('signatures.cancel') }}" class="btn btn-outline-danger">Cancelar Assinatura</a>
             @endif
         @else
-            nao é assinante
+            <button type="button" class="btn btn-outline-secondary">Sem Assinatura</button>
         @endif
     </div>
 
@@ -36,7 +36,8 @@
                         <td>{{ date('d/m/Y', strtotime($invoice->date())) }}</td>
                         <td>{{ $invoice->total() }}</td>
                         <td>
-                            <a href="{{route('signatures.invoice.download', $invoice->id)}}" class="text-blue-500 hover:underline">
+                            <a href="{{ route('signatures.invoice.download', $invoice->id) }}"
+                                class="text-blue-500 hover:underline">
                                 Download
                             </a>
                         </td>

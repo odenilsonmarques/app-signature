@@ -27,6 +27,10 @@ Route::get('signatures/invoice',[SignatureController::class, 'invoice'])->name('
 
 Route::get('signatures/invoice/{id}',[SignatureController::class,'downloadInvoice'])->name('signatures.invoice.download');
 
+Route::get('signatures/cancel',[SignatureController::class,'cancel'])->name('signatures.cancel');
+
+Route::get('signatures/resume',[SignatureController::class,'resume'])->name('signatures.resume');
+
 
 Route::get('/',[SiteController::class, 'home'])->name('site.home');
 

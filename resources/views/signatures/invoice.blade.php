@@ -6,6 +6,21 @@
             {{ __('Minhas faturas') }}
         </h2>
     </x-slot>
+
+    <div class="container mx-auto mt-6">
+        {{-- condição para cancelar assinatura --}}
+        @if(Auth::user()->subscription('default'))
+            {{-- caso o cilnete queira voltar a reativar fazemos essa condição aqui, pois ele cancelou mais ainda esté dentro do periodo que ele pode reativar --}}
+            @if(Auth::user()->subscription('default')->onGracePeriod())
+                <a href="{{route('signatures.resume')}}">Reativar Assinatura</a>
+            @else
+                <a href="{{route('signatures.cancel')}}">Cancelar Assinatura</a>
+            @endif
+        @else
+            nao é assinante
+        @endif
+    </div>
+
     <div class="container mx-auto mt-6">
         <table class="table table-striped table-hover">
             <thead>

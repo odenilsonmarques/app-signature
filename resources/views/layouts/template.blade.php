@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 </head>
 <body>
-    <header class="mb">
+    <header class="mb back-header">
         <nav class="navbar navbar-expand-sm navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">

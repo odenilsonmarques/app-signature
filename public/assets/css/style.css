@@ -61,6 +61,10 @@ body{
     font-size: 30px;
 }
 
+.plans-section p{
+    text-align: center;
+}
+
 /* 
 button a{
     text-decoration: none;

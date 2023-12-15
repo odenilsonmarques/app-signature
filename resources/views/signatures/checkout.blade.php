@@ -13,7 +13,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
-                    {{-- <p>Assinando o {{$plan->name}}</p> --}}
+                    {{-- pegando o nome do plano e outros detahes que serão enviado quando submeter o form. Isso so é possivel porque no metodo checkout passamos esses detalhes --}}
+                    <p>Assinando o {{$plan->name}}</p>
                     <form action="{{route('signatures.store')}}" method="post" id="form">
                         @csrf
 

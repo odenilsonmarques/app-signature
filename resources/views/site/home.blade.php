@@ -48,7 +48,7 @@
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <a href=""><button class="btn btn-primary">Assinar agora mesmo
+                            <a href="{{route('assina.plan',$plan->url)}}"><button class="btn btn-primary">Assinar agora mesmo
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"

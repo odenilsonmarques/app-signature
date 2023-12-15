@@ -18,8 +18,13 @@ class SignatureController extends Controller
     //método para cadastrar usuários logados
     public function store(Request $request)
     {
+        $plan = session('plan'); //recuperando os detalhe do plano
         $request->user()
-            ->newSubscription('default', 'price_1NwmxHKgIIEG85eD7N7B3Gnv') //so foi possivell usar o metodo newSubscription poque configuramos o bilable do cashier no model e este ja tem varios recursos que podemos usar. o primeiro parametro é tipo de plano nesse caso o padrao(default) o segundo é o plano em no caso estamos pegando direto do stripe, mas a ideia é dinamizar
+            //so foi possivell usar o metodo newSubscription poque configuramos o bilable do cashier no model e este ja tem varios recursos que podemos usar. o primeiro parametro é tipo de plano nesse caso o padrao(default) o segundo é o plano em no caso estamos pegando direto do stripe, mas a ideia é dinamizar
+            // ->newSubscription('default', 'price_1NwmxHKgIIEG85eD7N7B3Gnv') //aqui estavos definido o plano manualemnte
+
+            ->newSubscription('default', $plan->stripe_id)//agora pegamos o id do plano vindo da sessio dinamicamente
+            
             ->create($request->token); //recendo o token atraves da request
         // depois que for criado a assinatura do usuário ele vai ser direcionado para uma pagina premium
         return redirect()->route('signatures.premium');
@@ -31,7 +36,7 @@ class SignatureController extends Controller
         return view('signatures.premium');
     }
 
-    //metodo para chamar a view de cheackou.
+    //metodo para chamar a view de cheackout.
     public function checkout()
     {
         // Se o usuário for assinante este é redirecionado para o premium, caso nao for vai para pagina checkout
@@ -42,6 +47,8 @@ class SignatureController extends Controller
 
             // aqui estamos gerando uma especie de intenção(intent) de pagamento e recuperando o usuario autenticado e chama o metod createSetupIntennt do stripe. Despoi é preciso pegar essa variavel na view, e nesse caso declaramos no botao
             'intent' => auth()->user()->createSetupIntent(),
+            //passando os detalhes do plano
+            'plan' => session('plan')
         ]);
     }
 

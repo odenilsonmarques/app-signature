@@ -73,8 +73,8 @@
                         @csrf
                         <h2 class="text-center mb-4">Fale conosco</h2>
                         <div class="form-group mb-3">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" required>
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
 
                         <div class="form-group mb-3">
@@ -83,8 +83,13 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="mensage">Mensagem</label>
-                            <textarea class="form-control"></textarea>
+                            <label for="subject">Assunto</label>
+                            <input type="subject" class="form-control" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="message">Mensagem</label>
+                            <textarea class="form-control" name="message"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block">Enviar</button>

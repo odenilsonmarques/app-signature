@@ -28,4 +28,16 @@ class ContactRequest extends FormRequest
             'message' => ['required', 'max:200'],
         ];
     }
+
+    public function messages() //funcaão criada para exibir as mensagem
+    {
+        return [
+            'name.required'=>'O campo nome é obrigatório !',
+            'subject'=>'O campo assunto é obrigatório !',
+            'subject.max'=>'O campo assunto deve ter no maximo 200 caracteres !',
+            'email.required'=>'O campo email é obrigatório !',
+            'message.required'=>'O campo mensagem é obrigatório !',
+            'message.max'=>'O campo mensagem deve ter no maximo 200 caracteres !'
+        ];
+    }
 }

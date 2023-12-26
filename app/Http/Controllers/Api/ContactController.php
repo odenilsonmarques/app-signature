@@ -15,6 +15,11 @@ class ContactController extends Controller
         //chamando nossa classe de email que por sua envia os dados para a view contactSite
         Mail::send(new ContactSite($request->all()));
 
-        return response()->json(['message' => 'success']);
+        // Verifica se o formulário está vazio
+        if (empty($request->all())) {
+            return response()->json(['error' => 'Formulário vazio. Preencha os campos antes de enviar.'], 400);
+        }
+
+        return response()->json(['message' => 'Contato enviado com sucesso !']);
     }
 }

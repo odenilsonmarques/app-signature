@@ -12,6 +12,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    {{-- div para exibir os erros --}}
+                    <div id="show-errors" style="display: none" class="mt-2 text-sm text-red-600"></div>
                     
                     {{-- pegando o nome do plano e outros detahes que serão enviado quando submeter o form. Isso so é possivel porque no metodo checkout passamos esses detalhes --}}
                     <p>Assinando o {{$plan->name}}</p>
@@ -56,11 +59,21 @@
     const cardButton = document.getElementById('card-button')
     //pegando o o atrbuto do batoa
     const clientSecret = cardButton.dataset.secret
+
+    //pegando o id
+    const showErrors = document.getElementById('show-errors')
     
 
     // pegando o evento de submit do form
     form.addEventListener('submit',async(e)=>{
         e.preventDefault()
+
+        // disabilitando o botao apos o envio
+        cardButton.classList.add('cursor-not-allowed')
+        cardButton.firstChild.data = 'Validando ...'
+        // resetando os erros
+        showErrors.innerText = ''
+        showErrors.style.display = 'none'
 
 
         // console.log(cardHolderName.value)
@@ -79,11 +92,17 @@
         );
 
         if(error){
-            alert('Erro')
+            // alert('Erro')
             console.log(error)
+
+            showErrors.style.display = 'block'
+            showErrors.innerText = (error.type == 'validation_error') ? error.message : 'Dados inválidos, verifique e tente novamente'
+            cardButton.classList.remove('cursor-not-allowed')
 
             return;
         }
+
+       
 
         // se o tokem acima for gerado e todos os dado estiverem certo é criado a assinatura no stripe com os dados do token passando os dados em um input hidden
         let token = document.createElement('input')

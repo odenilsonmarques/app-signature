@@ -14,7 +14,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     {{-- div para exibir os erros --}}
-                    <div id="show-errors" style="display: none" class="mt-2 text-sm text-red-600"></div>
+                    <div id="show-errors" style="display: none;" class="mt-2 text-sm text-red-600"></div>
                     
                     {{-- pegando o nome do plano e outros detahes que serão enviado quando submeter o form. Isso so é possivel porque no metodo checkout passamos esses detalhes --}}
                     <p>Assinando o {{$plan->name}}</p>
@@ -22,7 +22,7 @@
                         @csrf
 
                         <div class="col-span-6 sm:col-span-4 py-2">
-                            <input type="text" name="card-holder-name" id="card-holder-name" placeholder="informe seu nome" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                            <input type="text" name="card-holder-name" id="card-holder-name" placeholder="informe seu nome" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
                         </div>
                        
                         <div class="col-span-6 sm:col-span-4 py-2">
@@ -117,3 +117,25 @@
 
 
 </script>
+
+
+<style>
+    .StripeElement {
+        background-color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Carbon\Carbon;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,4 +43,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    // mutator para exiibir a data de validade da assinatura
+    public function getAccessEndAttribute()
+    {
+        $accessEndAt = $this->subscription('default')->ends_at;
+
+        return Carbon::make($accessEndAt)->format("d/m/Y à\s H:i:s");
+    }
+
+    //mutator para exibir o nome do plano
+    public function plan()
+    {
+        $stripePlan = $this->subscription('default')->stripe_plan;
+
+        return Plan::where('stripe_id', $stripePlan)->first();
+    }
+
 }

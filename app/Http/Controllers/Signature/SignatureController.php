@@ -55,9 +55,13 @@ class SignatureController extends Controller
     // metodo para exibir as faturas
     public function invoice()
     {
-        $invoices = auth()->user()->invoices();
+        $user = auth()->user();
 
-        return view('signatures.invoice', compact('invoices'));
+        $invoices = $user->invoices();
+
+        $subscription = $user->subscription('default');
+
+        return view('signatures.invoice', compact('user','invoices','subscription'));
     }
 
     // metodo para download

@@ -9,15 +9,25 @@
 
     <div class="container mx-auto mt-6">
         {{-- condição para cancelar assinatura --}}
-        @if (Auth::user()->subscription('default'))
-            {{-- caso o cilnete queira voltar a reativar fazemos essa condição aqui, pois ele cancelou mais ainda esté dentro do periodo que ele pode reativar --}}
-            @if (Auth::user()->subscription('default')->onGracePeriod())
+        @if ($subscription)
+
+            {{-- se o cliente clicar em cancelar e ainda estiver o periodo virgente, ele vai ter acesso até a data de expiração --}}
+            @if($subscription->canceled() && $subscription->onGracePeriod())
                 <a href="{{ route('signatures.resume') }}" class="btn btn-outline-success">Reativar Assinatura</a>
-            @else
+                seu acesso vai até: {{$user->access_end}}
+                
+                {{-- caso nao tenha cancelado --}}
+            @elseif(!$subscription->canceled())
                 <a href="{{ route('signatures.cancel') }}" class="btn btn-outline-danger">Cancelar Assinatura</a>
             @endif
+
+            {{-- se assinatura foi cancelada  e o periodo de virgente acabou, é encerrado todo acesso --}}
+            @if($subscription->ended())
+                Assinatura cancaleda
+            @endif
+
         @else
-            <button type="button" class="btn btn-outline-secondary">Sem Assinatura</button>
+            <button type="button" class="btn btn-outline-secondary">Você não é assinante</button>
         @endif
     </div>
 
